@@ -128,6 +128,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="923-4FSC0PF001-Text.cpp" />
+    <ClCompile Include="GameText.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameText.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="datas\fonts\Violin.otf">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </Font>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

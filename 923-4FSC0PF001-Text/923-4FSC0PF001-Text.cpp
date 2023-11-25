@@ -1,20 +1,69 @@
-// 923-4FSC0PF001-Text.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+
 
 #include <iostream>
 
+#include "GameText.h"
+#include "SFML/Main.hpp"
+#include "SFML/Graphics.hpp"
+
 int main()
 {
-    std::cout << "Hello World!\n";
+    sf::RenderWindow window(sf::VideoMode(800, 600), "The Game");
+
+    // Basic Setup of the window
+    // Vertical sync, framerate
+    window.setVerticalSyncEnabled(true);
+    window.setFramerateLimit(30);
+
+    GameText unDeuxTrois("1.. 2.. 3..", window.getSize().x / 2, window.getSize().y / 2);
+    GameText quatreCinqSix("4.. 5.. 6..", window.getSize().x / 2, 100 + window.getSize().y / 2);
+
+    while (window.isOpen())
+    {
+
+    	sf::Mouse mouse;
+
+        unDeuxTrois.Off();
+        quatreCinqSix.Off();
+
+        if (mouse.isButtonPressed(sf::Mouse::Left))
+            unDeuxTrois.On();
+
+        if (mouse.isButtonPressed(sf::Mouse::Right))
+            quatreCinqSix.On();
+
+        // on inspecte tous les évènements de la fenêtre qui ont été émis depuis la précédente itération
+        sf::Event event;
+
+        while (window.pollEvent(event))
+        {
+
+            switch (event.type)
+            {
+                // évènement "fermeture demandée" : on ferme la fenêtre
+            case sf::Event::Closed:
+                window.close();
+                break;
+
+            default:
+                break;
+            }
+
+        }
+
+
+
+        // Graphical Region
+        window.clear(sf::Color::Black);
+
+        unDeuxTrois.Draw(window);
+        quatreCinqSix.Draw(window);
+
+        // Window Display
+        window.display();
+
+    }
+
+
+
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
